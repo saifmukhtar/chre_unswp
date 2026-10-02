@@ -1,5 +1,5 @@
-# External Source Code
-src/
+# External Source Code (Root only)
+/src/
 
 # Engine Output & Traces
 traces/
@@ -9,7 +9,8 @@ traces/
 # Python
 __pycache__/
 *.pyc
+*/__pycache__/
 
-# IDEs & OS
+# Temp/Debug files
 .vscode/
 .DS_Store
