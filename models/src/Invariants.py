@@ -1,6 +1,3 @@
-import sys
-sys.path.insert(0, "/home/saif/chre")
-sys.path.insert(0, "/home/saif/chre_unswp")
 from chre_api import Rule
 from models.schema import NodeType, StateToken
 
@@ -26,14 +23,17 @@ def get_invariant_detectors():
             ["Singleton", StateToken.LOCKED],       # The transaction finished successfully
             ["Ledger", NodeType.LEDGER],
             ["Ledger", StateToken.DELTAS_ZERO],     # The math claims everything is paid
+            ["Ledger", "LIVES_IN", "Singleton"],    # Memory Locality Patch
             ["Attacker", NodeType.USER],
+            ["Attacker", "LIVES_IN", "Singleton"],  # Memory Locality Patch
             ["Attacker", NodeType.CURRENCY]         # BUT the Attacker holds the physical currency!
         ],
         kept=[
             "Singleton", "Ledger", "Attacker", 
             NodeType.SINGLETON, StateToken.LOCKED, 
             NodeType.LEDGER, StateToken.DELTAS_ZERO, 
-            NodeType.USER, NodeType.CURRENCY
+            NodeType.USER, NodeType.CURRENCY,
+            "LIVES_IN"
         ],
         rhs=[
             ["Attacker", "State_CRITICAL_THEFT"]    # Flags the graph
