@@ -1,0 +1,15 @@
+# External Source Code
+src/
+
+# Engine Output & Traces
+traces/
+*.graphml
+*.json
+
+# Python
+__pycache__/
+*.pyc
+
+# IDEs & OS
+.vscode/
+.DS_Store
